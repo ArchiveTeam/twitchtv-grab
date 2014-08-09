@@ -56,7 +56,7 @@ if not WGET_LUA:
 #
 # Update this each time you make a non-cosmetic change.
 # It will be added to the WARC files and reported to the tracker.
-VERSION = "20140809.01"
+VERSION = "20140809.02"
 USER_AGENT = 'ArchiveTeam'
 TRACKER_ID = 'twitchtv'
 TRACKER_HOST = 'tracker.archiveteam.org'
@@ -279,7 +279,8 @@ pipeline = Pipeline(
             rsync_extra_args=[
                 "--recursive",
                 "--partial",
-                "--partial-dir", ".rsync-tmp"
+                "--partial-dir", ".rsync-tmp",
+                "--sockopts=SO_SNDBUF=16777216,SO_RCVBUF=16777216"  # speedbooster!!!
             ]
             ),
     ),
