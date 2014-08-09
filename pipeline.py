@@ -59,7 +59,7 @@ if not WGET_LUA:
 VERSION = "20140809.01"
 USER_AGENT = 'ArchiveTeam'
 TRACKER_ID = 'twitchtv'
-TRACKER_HOST = 'localhost:9080'
+TRACKER_HOST = 'tracker.archiveteam.org'
 
 
 ###########################################################################
