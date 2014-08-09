@@ -101,7 +101,7 @@ class PrepareDirectories(SimpleTask):
 
     def process(self, item):
         item_name = item["item_name"]
-        escaped_item_name = item_name.replace(':', '_')
+        escaped_item_name = hashlib.sha1(item_name).hexdigest()
         dirname = "/".join((item["data_dir"], escaped_item_name))
 
         if os.path.isdir(dirname):
@@ -201,11 +201,17 @@ class WgetArgs(object):
 
             assert video_type in ('a', 'b', 'c')
 
-            wget_args.append('http://www.twitch.tv/{0}/{1}/{2}'.format(username, video_type, video_num))
+            # I guess we should have scraped for a video type since they don't
+            # match the video ID.
+            for video_type_ in ('a', 'b', 'c'):
+                wget_args.append('http://www.twitch.tv/{0}/{1}/{2}'.format(username, video_type_, video_num))
+
             wget_args.append('https://api.twitch.tv/kraken/videos/{0}'.format(video_id))
+
         elif item_type == 'url':
             # This should be a URL to a flv
             wget_args.append(item_value)
+
         else:
             raise Exception('Unknown item')
 
