@@ -235,7 +235,7 @@ project = Project(
     project_html="""
         <img class="project-logo" alt="Project logo" src="http://archiveteam.org/images/d/d4/Twitch_Logo.png" height="50px" title="PRAISE HELIX!"/>
         <h2>Twitch Phase 2: Content Grab. <span class="links"><a href="http://twitch.tv/">Website</a> &middot; <a href="http://tracker.archiveteam.org/twitchtv/">Leaderboard</a></span></h2>
-        <p>Twitch is releasing videos from their PC. <em style="font-weight: bold;"><a href="https://archive.org/donate/" title="Do it for Kenya.">Donate to IA for disk space!</a></em></p>
+        <p>Twitch is releasing videos from their PC. Please use low concurrency when working on this project. <em style="font-weight: bold;"><a href="https://archive.org/donate/" title="Do it for Kenya.">Donate to IA for disk space!</a></em></p>
     """,
     utc_deadline=datetime.datetime(2014, 8, 27, 23, 59, 0)
 )
