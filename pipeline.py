@@ -56,7 +56,7 @@ if not WGET_LUA:
 #
 # Update this each time you make a non-cosmetic change.
 # It will be added to the WARC files and reported to the tracker.
-VERSION = "20140809.02"
+VERSION = "20140817.01"
 USER_AGENT = 'ArchiveTeam'
 TRACKER_ID = 'twitchtv'
 TRACKER_HOST = 'tracker.archiveteam.org'
@@ -201,10 +201,15 @@ class WgetArgs(object):
 
             assert video_type in ('a', 'b', 'c')
 
-            # I guess we should have scraped for a video type since they don't
-            # match the video ID.
-            for video_type_ in ('a', 'b', 'c'):
-                wget_args.append('http://www.twitch.tv/{0}/{1}/{2}'.format(username, video_type_, video_num))
+            if video_type == 'a':
+                wget_args.append('http://www.twitch.tv/{0}/b/{1}'.format(username, video_num))
+            elif video_type == 'c':
+                wget_args.append('http://www.twitch.tv/{0}/c/{1}'.format(username, video_num))
+            else:
+                # I guess we should have scraped for a video type since they don't
+                # match the video ID.
+                for video_type_ in ('a', 'b', 'c'):
+                    wget_args.append('http://www.twitch.tv/{0}/{1}/{2}'.format(username, video_type_, video_num))
 
             wget_args.append('https://api.twitch.tv/kraken/videos/{0}'.format(video_id))
 
