@@ -34,7 +34,8 @@ wget.callbacks.httploop_result = function(url, err, http_stat)
   io.stdout:write(url_count .. "=" .. status_code .. " " .. url["url"] .. ".  \r")
   io.stdout:flush()
 
-  if status_code >= 500 or
+  -- status code 0 means connection timed out
+  if status_code == 0 or status_code >= 500 or
     (status_code >= 400 and status_code ~= 404) then
     io.stdout:write("\nServer returned "..http_stat.statcode..". Sleeping.\n")
     io.stdout:flush()
